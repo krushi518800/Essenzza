@@ -5,7 +5,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const membershipForm = document.getElementById('membership-form');
     const successContent = document.getElementById('success-content');
 
+
+    // Initialize international phone input
+    const phoneInput = document.getElementById('mobile');
+    const iti = window.intlTelInput(phoneInput, {
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+        separateDialCode: true,
+        initialCountry: "auto",
+        geoIpLookup: function(callback) {
+            fetch("https://ipapi.co/json")
+                .then(function(res) { return res.json(); })
+                .then(function(data) { callback(data.country_code); })
+                .catch(function() { callback("us"); });
+        }
+    });
+
     // Handle "Apply for Membership" click
+
     applyBtn.addEventListener('click', () => {
         // Remove animation class so CSS transitions can take over
         initialContent.classList.remove('fade-in-on-load');
@@ -74,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 {
                     name: 'phone',
-                    value: document.getElementById('mobile').value
+                    value: iti.getNumber()
                 },
                 {
                     name: 'message',
