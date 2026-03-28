@@ -120,6 +120,12 @@ body {
     margin-bottom: 3rem;
     opacity: 0;
     animation: fadeIn var(--transition-slow) 0.9s forwards;
+    letter-spacing: 0.15em;
+}
+
+.secondary-line strong {
+    font-weight: 700;
+    color: var(--primary-text);
 }
 
 /* Content Sections Wrapper */
