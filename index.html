@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESSENZZA | Membership Required</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-texture"></div>
+    <main class="container">
+
+        <h1 class="brand-name">ESSENZZA</h1>
+
+        <div class="content-wrapper">
+            <!-- Initial Content -->
+            <div id="initial-content" class="content-section active fade-in-on-load">
+                <p class="tagline">Membership required.</p>
+                <p class="secondary-line">Store access will be limited to members only.</p>
+                <button id="apply-btn" class="cta-button">Apply for Membership</button>
+            </div>
+
+            <!-- Form Content -->
+            <div id="form-content" class="content-section">
+                <form id="membership-form" autocomplete="off">
+                <div class="form-group">
+                    <label for="email" class="sr-only">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="sr-only">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Name (optional)">
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="sr-only">Why do you want access?</label>
+                    <textarea id="message" name="message" rows="2" placeholder="Why do you want access?"></textarea>
+                </div>
+
+                <p class="helper-text">Limited approvals before launch.</p>
+                <button type="submit" class="submit-button">Request Access</button>
+            </form>
+        </div>
+
+            <!-- Success Content -->
+            <div id="success-content" class="content-section">
+                <p class="success-message">Application received.</p>
+            </div>
+        </div>
+
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
