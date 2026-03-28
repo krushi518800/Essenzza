@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     value: document.getElementById('name').value
                 },
                 {
-                    name: 'mobilephone',
+                    name: 'phone',
                     value: document.getElementById('mobile').value
                 },
                 {
