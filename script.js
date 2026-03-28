@@ -57,17 +57,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 400); // Wait for the physical expansion to mostly complete
     });
 
-    // Handle form submission
-    membershipForm.addEventListener('submit', (e) => {
+    // Handle form submission to HubSpot API
+    membershipForm.addEventListener('submit', async (e) => {
         e.preventDefault(); // Prevent default form submission
 
-        // Fade out form content
-        formContent.classList.remove('active');
+        // Gather form data
+        const formData = {
+            fields: [
+                {
+                    name: 'email',
+                    value: document.getElementById('email').value
+                },
+                {
+                    name: 'firstname',
+                    value: document.getElementById('name').value
+                },
+                {
+                    name: 'mobilephone',
+                    value: document.getElementById('mobile').value
+                },
+                {
+                    name: 'message',
+                    value: document.getElementById('message').value
+                }
+            ]
+        };
 
-        // Wait for fade out transition
-        setTimeout(() => {
-            // Fade in success content
-            successContent.classList.add('active');
-        }, 800);
+        const portalId = '245710062';
+        const formGuid = 'e148dc1d-56e6-4dcd-b665-8bf6ce5a87c3';
+        const url = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`;
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                // Fade out form content
+                formContent.classList.remove('active');
+
+                // Wait for fade out transition
+                setTimeout(() => {
+                    // Fade in success content
+                    successContent.classList.add('active');
+                }, 800);
+            } else {
+                console.error("HubSpot Submission Error", await response.json());
+                alert("There was an error submitting your application. Please try again.");
+            }
+        } catch (error) {
+            console.error("Network Error", error);
+            alert("Network error. Please try again later.");
+        }
     });
 });
