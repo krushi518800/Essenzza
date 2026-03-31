@@ -20,6 +20,11 @@
     --transition-fast: 0.3s ease;
 }
 
+::selection {
+    background-color: var(--accent-color);
+    color: var(--primary-text);
+}
+
 * {
     margin: 0;
     padding: 0;

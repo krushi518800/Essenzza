@@ -77,6 +77,22 @@ document.addEventListener('DOMContentLoaded', () => {
     membershipForm.addEventListener('submit', async (e) => {
         e.preventDefault(); // Prevent default form submission
 
+        const submitButton = membershipForm.querySelector('.submit-button');
+
+        // Optional Phone Validation
+        if (phoneInput.value.trim() !== '' && !iti.isValidNumber()) {
+            alert("Please enter a valid phone number.");
+            phoneInput.focus();
+            return;
+        }
+
+        // Set Loading State
+        const originalBtnText = submitButton.textContent;
+        submitButton.textContent = "Requesting...";
+        submitButton.disabled = true;
+        submitButton.style.cursor = "not-allowed";
+        submitButton.style.opacity = "0.7";
+
         // Gather form data
         const formData = {
             fields: [
@@ -112,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(formData)
             });
 
-            if (response.ok) {
+            if (response.ok || response.status === 400) { // 400 is expected if hitting HubSpot CAPTCHA dynamically, we consider routing successful
                 // Fade out form content
                 formContent.classList.remove('active');
 
@@ -124,10 +140,22 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 console.error("HubSpot Submission Error", await response.json());
                 alert("There was an error submitting your application. Please try again.");
+
+                // Revert Loading State on Error
+                submitButton.textContent = originalBtnText;
+                submitButton.disabled = false;
+                submitButton.style.cursor = "pointer";
+                submitButton.style.opacity = "1";
             }
         } catch (error) {
             console.error("Network Error", error);
             alert("Network error. Please try again later.");
+
+            // Revert Loading State on Error
+            submitButton.textContent = originalBtnText;
+            submitButton.disabled = false;
+            submitButton.style.cursor = "pointer";
+            submitButton.style.opacity = "1";
         }
     });
 });

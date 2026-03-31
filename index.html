@@ -25,6 +25,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
     <link rel="stylesheet" href="styles.css">
@@ -44,6 +45,12 @@
     </script>
 </head>
 <body>
+    <noscript>
+        <div style="padding: 20px; text-align: center; color: #F5F2ED; background: #0B0B0B; position: absolute; z-index: 9999; width: 100%; top: 0;">
+            This exclusive experience requires JavaScript. Please enable it to apply for membership.
+        </div>
+    </noscript>
+
     <div class="background-texture"></div>
     <main class="container">
 
@@ -88,7 +95,7 @@
         </div>
 
             <!-- Success Content -->
-            <div id="success-content" class="content-section">
+            <div id="success-content" class="content-section" aria-live="polite">
                 <p class="success-message">Application received.</p>
             </div>
         </div>
