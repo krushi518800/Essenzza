@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ESSENZZA | Membership Required</title>
     <meta name="description" content="Store access will be limited to members only. Apply for exclusive access to the modern streetwear brand, ESSENZZA.">
-    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="luxury streetwear, exclusive fashion, members only clothing, ESSENZZA">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="theme-color" content="#0B0B0B">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ESSENZZA">
     <link rel="canonical" href="https://essenzza.in">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230B0B0B'/><text y='50%' x='50%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='65' font-weight='600' fill='%23F5F2ED'>E</text></svg>">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -22,6 +28,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.hsforms.com" crossorigin>
+    <link rel="preconnect" href="https://ipapi.co" crossorigin>
+    <link rel="dns-prefetch" href="https://api.hsforms.com">
+    <link rel="dns-prefetch" href="https://ipapi.co">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
     <link rel="stylesheet" href="styles.css">
@@ -39,12 +50,32 @@
       ]
     }
     </script>
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <noscript>
+        <div style="padding: 20px; text-align: center; color: #F5F2ED; background: #0B0B0B; position: absolute; z-index: 9999; width: 100%; top: 0;">
+            This exclusive experience requires JavaScript. Please enable it to apply for membership.
+        </div>
+    </noscript>
+
     <div class="background-texture"></div>
     <main class="container">
 
         <h1 class="brand-name">ESSENZZA</h1>
+        <h2 class="sr-only">Exclusive Modern Streetwear</h2>
         <div class="micro-divider"></div>
 
         <div class="content-wrapper">
@@ -57,20 +88,20 @@
 
             <!-- Form Content -->
             <div id="form-content" class="content-section">
-                <form id="membership-form" autocomplete="off">
+                <form id="membership-form" autocomplete="on">
                 <div class="form-group">
                     <label for="email" class="sr-only">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <input type="email" id="email" name="email" placeholder="Email" autocomplete="email" required>
                 </div>
 
                 <div class="form-group">
                     <label for="name" class="sr-only">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Name">
+                    <input type="text" id="name" name="name" placeholder="Name" autocomplete="name">
                 </div>
 
                 <div class="form-group">
                     <label for="mobile" class="sr-only">Mobile Number</label>
-                    <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number">
+                    <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" autocomplete="tel">
                 </div>
 
                 <div class="form-group">
@@ -84,7 +115,7 @@
         </div>
 
             <!-- Success Content -->
-            <div id="success-content" class="content-section">
+            <div id="success-content" class="content-section" aria-live="polite">
                 <p class="success-message">Application received.</p>
             </div>
         </div>
