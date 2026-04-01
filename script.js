@@ -1,4 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- MICRO-INTERACTIONS ---
+
+    // 1. Custom Magnetic Cursor
+    const cursor = document.querySelector('.custom-cursor');
+    const interactiveElements = document.querySelectorAll('button, a, input, textarea');
+
+    // Only init cursor stuff if we're on a non-touch device
+    if (window.matchMedia("(pointer: fine)").matches) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+        });
+
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // 2. Subliminal Background Parallax
+        const bgTexture = document.querySelector('.background-texture');
+        document.addEventListener('mousemove', (e) => {
+            const xOffset = (e.clientX / window.innerWidth - 0.5) * 20; // max 20px shift
+            const yOffset = (e.clientY / window.innerHeight - 0.5) * 20;
+            bgTexture.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+        });
+    }
+
+
     const applyBtn = document.getElementById('apply-btn');
     const initialContent = document.getElementById('initial-content');
     const formContent = document.getElementById('form-content');
